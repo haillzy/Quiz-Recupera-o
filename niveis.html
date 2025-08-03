@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Dificuldades </title>
+</head>
 
+<style>
+   header {
+        background: linear-gradient(to right, rgb(243, 181, 89), rgb(240, 232, 119));
+        width: 90%;
+        padding: 20px 15px;
+        font-family: 'Courier New', Courier, monospace;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+    }
+
+    header h1 {
+        font-size: 2.8rem;
+        font-weight: normal;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+        padding: 30px 0;
+        align-items: center;
+    }
+    
+  .retangulo {
+        background: linear-gradient(to bottom, rgb(243, 181, 89), rgb(240, 232, 119));
+        border-radius: 10px;
+        padding: 100px 200px;
+        margin-bottom: 30px;
+        margin-left: 30px;
+        box-shadow: 0 4px 15px #d8aa4d;
+        color: #f6f6f6;
+        align-items: center;
+    }
+
+     .dificuldade {
+        display: block;
+        padding: 40px 180px;
+        background-color:#f0ad26;
+        color: white;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: medium;
+        box-shadow: rgb(255, 177, 22);
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        margin-top: 60px;
+        transition: all 0.3 ease;
+    }
+
+    .dificuldade:hover{
+        background-color:rgb(255, 177, 22);
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px  linear-gradient ( rgb(255, 177, 22),rgb(240, 232, 119));
+    }
+
+    .texto {
+        font-family: 'Courier New', Courier, monospace;
+        text-align: center;
+        margin-top: -60px;
+        font-weight: 700;
+    }
+
+
+
+</style>
+
+<body>
+    
+    <div class="container">
+
+        <header>
+            <h1><b> Cyber Quiz</b></h1>
+        </header>
+    </div>
+
+    <div class="container">
+        <!-- Niveis de dificuldade -->
+        <section class="retangulo">
+            <h1 class="texto"><b> Dificuldade </b></h1>
+            <button class="dificuldade"> <p> Fácil</p> </button>
+            <button class="dificuldade"><p> Médio </p> </button>
+            <button class="dificuldade"> <p> Difícil </p> </button>
+        </section>
+    </div>
+
+</body>
+</html>
