@@ -23,7 +23,7 @@
     /* Cabeçalho */
 
     header {
-        background: linear-gradient(to right, rgb(216, 170, 77), rgb(240, 232, 119));
+        background: linear-gradient(to right, rgb(243, 181, 89), rgb(240, 232, 119));
         width: 90%;
         padding: 20px 15px;
         font-family: 'Courier New', Courier, monospace;
@@ -61,11 +61,11 @@
     .comecar {
         display: block;
         padding: 40px 180px;
-        background-color: #d8aa4d;
+        background-color:#f0ad26;
         color: white;
         font-family: 'Courier New', Courier, monospace;
         font-size: medium;
-        box-shadow: #997a3b;
+        box-shadow: rgb(255, 177, 22);
         border-radius: 5px;
         border: none;
         cursor: pointer;
@@ -74,9 +74,9 @@
     }
 
     .comecar:hover {
-        background-color: #d8aa4d;
+        background-color:rgb(255, 177, 22);
         transform: scale(1.05);
-        box-shadow: 0 4px 8px #e0b450;
+        box-shadow: 0 4px 8px  linear-gradient ( rgb(255, 177, 22),rgb(240, 232, 119));
     }
 
     .titulo {
@@ -84,6 +84,11 @@
         text-align: center;
         margin-top: -60px;
     }
+
+    a {
+    text-decoration: none;
+    }
+
 </style>
 
 <body>
@@ -100,7 +105,9 @@
             <h2 class="titulo"><b> O quanto você sabe sobre cybercrimes? </b>
                 <p>Vamos descobrir?</p>
             </h2>
-            <center><button class="comecar">Começar quiz </button></center>
+            <a href="niveis.html" class="link-botao">
+          <center> <button class="comecar">Começar Quiz</button> </center>
+            </a>
         </section>
     </div>
 
