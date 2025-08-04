@@ -102,7 +102,7 @@
             font-size: 28px;
         }
 
-        /* Feedback overlay */
+        /* area dos Feedback */
         .feedback-overlay {
             position: fixed;
             top: 0;
@@ -178,8 +178,7 @@
 
     <div class="container">
         <section class="retangulo">
-            <h1 class="titulo">1. Um amigo seu compartilhou a senha dele da Netflix contigo.
-                <Br> Isso é crime?
+            <h1 class="titulo">1. Usar um software pirata é considerado crime cibernético?.
             </h1>
         </section>
     </div>
@@ -212,15 +211,15 @@
             const feedbackText = document.getElementById('feedback-text');
             const feedbackBtn = document.getElementById('feedback-btn');
 
-            // Resposta correta
             respostaCorreta.addEventListener('click', function () {
+                updateScore(true);  // Adicionar esta linha
                 feedbackText.textContent = 'Correto!';
                 feedbackText.className = 'feedback-text correto';
                 showFeedback();
             });
 
-            // Resposta errada
             respostaErrada.addEventListener('click', function () {
+                updateScore(false); // Adicionar esta linha
                 feedbackText.textContent = 'Errou!';
                 feedbackText.className = 'feedback-text errado';
                 showFeedback();
@@ -242,9 +241,54 @@
                 document.querySelector('.feedback-content').classList.remove('show-content');
                 setTimeout(() => {
                     feedbackOverlay.classList.remove('show-feedback');
+                    window.location.href = 'facil2.html';
                 }, 300);
             }
         });
+        if (!localStorage.getItem('quizScore')) {
+            localStorage.setItem('quizScore', '0/5');
+        }
+
+        function updateScore(isCorrect) {
+            const currentScore = localStorage.getItem('quizScore').split('/');
+            let acertos = parseInt(currentScore[0]);
+            const total = parseInt(currentScore[1]);
+
+            if (isCorrect) {
+                acertos = Math.min(acertos + 1, total);
+            }
+
+            localStorage.setItem('quizScore', `${acertos}/${total}`);
+        }
+
+        function resetScore() {
+            localStorage.setItem('quizScore', '0/5');
+        }
+    </script>
+
+    <script>
+        // Inicializa a pontuação
+        if (!localStorage.getItem('quizScore')) {
+            localStorage.setItem('quizScore', '0/5');
+        }
+
+        // Função para atualizar a pontuação
+        function updateScore(isCorrect) {
+            const currentScore = localStorage.getItem('quizScore').split('/');
+            let acertos = parseInt(currentScore[0]);
+            const total = parseInt(currentScore[1]);
+
+            if (isCorrect) {
+                acertos = Math.min(acertos + 1, total);
+            }
+
+            localStorage.setItem('quizScore', `${acertos}/${total}`);
+        }
+
+        // Função para refazer a pontuação
+        function resetScore() {
+            localStorage.setItem('quizScore', '0/5');
+        }
     </script>
 </body>
 
