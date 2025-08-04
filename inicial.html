@@ -110,7 +110,31 @@
             </a>
         </section>
     </div>
-
+    
+<script>
+    // Inicializa a pontuação
+    if (!localStorage.getItem('quizScore')) {
+        localStorage.setItem('quizScore', '0/5');
+    }
+    
+    // Função para atualizar a pontuação
+    function updateScore(isCorrect) {
+        const currentScore = localStorage.getItem('quizScore').split('/');
+        let acertos = parseInt(currentScore[0]);
+        const total = parseInt(currentScore[1]);
+        
+        if (isCorrect) {
+            acertos = Math.min(acertos + 1, total);
+        }
+        
+        localStorage.setItem('quizScore', `${acertos}/${total}`);
+    }
+    
+    // Função para refazer a pontuação
+    function resetScore() {
+        localStorage.setItem('quizScore', '0/5');
+    }
+</script>
 
 
 </body>
