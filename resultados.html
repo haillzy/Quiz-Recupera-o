@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado - Cyber Quiz</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100%;
+        }
+
+        body {
+            background: linear-gradient(to left, rgb(243, 181, 89), rgb(240, 232, 119));
+            font-family: 'The seasons', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header {
+            background: rgb(255, 255, 255);
+            width: fit-content;
+            padding: 20px 50px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #000000;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .retangulo {
+            background: rgb(255, 255, 255);
+            color: black;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .resultado {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .mensagem {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .reiniciar {
+            padding: 15px 30px;
+            background-color: #f0ad26;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .reiniciar:hover {
+            background-color: rgb(255, 177, 22);
+            transform: scale(1.05);
+        }
+
+        .medalha {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            font-size: 4rem;
+            line-height: 100px;
+        }
+
+        .progresso {
+            width: 100%;
+            height: 20px;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .barra-progresso {
+            height: 100%;
+            background: linear-gradient(to right, #f0ad26, #f5e769);
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><b>RESULTADO FINAL</b></h1>
+    </header>
+
+    <div class="retangulo">
+        <div id="medalha" class="medalha">🏆</div>
+        <div class="resultado" id="pontuacao">0/5</div>
+        <div class="progresso">
+            <div id="barra-progresso" class="barra-progresso" style="width: 0%"></div>
+        </div>
+        <div class="mensagem" id="mensagem">Carregando seu resultado...</div>
+        <button class="reiniciar" onclick="reiniciarQuiz()">JOGAR NOVAMENTE</button>
+    </div>
+
+    <script>
+
+        // Função para reiniciar o quiz
+        function reiniciarQuiz() {
+            localStorage.setItem('quizScore', '0/5');
+
+            const link = document.createElement('a');
+            link.href = 'inicial.html';
+            link.click();
+        }
+
+        // Obtém a pontuação no formato "X/5" usado em todas as páginas
+        function obterPontuacao() {
+            const scoreSalvo = localStorage.getItem('quizScore');
+
+            // Padrão caso não exista ou formato inválido
+            let acertos = 0;
+            let total = 5;
+
+            if (scoreSalvo && scoreSalvo.includes('/')) {
+                const partes = scoreSalvo.split('/');
+                acertos = parseInt(partes[0]) || 0;
+                total = parseInt(partes[1]) || 5;
+            }
+
+            return { acertos, total };
+        }
+
+        // Atualiza a exibição do resultado
+        function mostrarResultado() {
+            const { acertos, total } = obterPontuacao();
+            const porcentagem = total > 0 ? (acertos / total) * 100 : 0;
+
+            document.getElementById('pontuacao').textContent = `${acertos}/${total}`;
+            document.getElementById('barra-progresso').style.width = `${porcentagem}%`;
+
+            // Define mensagem e medalha conforme a pontuação
+            const { mensagem, medalha } = getResultado(acertos);
+            document.getElementById('mensagem').textContent = mensagem;
+            document.getElementById('medalha').textContent = medalha;
+        }
+
+        // Retorna a mensagem e medalha
+        function getResultado(acertos) {
+            // Garante que acertos está entre 0 e 5
+            acertos = Math.max(0, Math.min(acertos, 5));
+
+            const resultados = [
+                { mensagem: "Você acertou 0 de 5. Hora de estudar mais sobre cybercrimes!", medalha: "😟" }, // 0 acertos
+                { mensagem: "Você acertou 1 de 5. Está começando a aprender!", medalha: "🙂" },      // 1 acerto
+                { mensagem: "Você acertou 2 de 5. Bom começo, continue estudando!", medalha: "😊" }, // 2 acertos
+                { mensagem: "Você acertou 3 de 5. Bom trabalho!", medalha: "👍" },                  // 3 acertos
+                { mensagem: "Você acertou 4 de 5. Ótimo conhecimento!", medalha: "👏" },            // 4 acertos
+                { mensagem: "Você acertou 5 de 5. Expert em cybercrimes!", medalha: "🏆" }          // 5 acertos
+            ];
+
+            return resultados[acertos];
+        }
+        // Quando a página carregar
+        document.addEventListener('DOMContentLoaded', mostrarResultado);
+    </script>
+</body>
+
+</html>
