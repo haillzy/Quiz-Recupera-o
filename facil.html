@@ -210,39 +210,42 @@
             const feedbackOverlay = document.getElementById('feedback-overlay');
             const feedbackText = document.getElementById('feedback-text');
             const feedbackBtn = document.getElementById('feedback-btn');
-
-            // Resposta correta
-            respostaCorreta.addEventListener('click', function () {
-                feedbackText.textContent = 'Correto!';
-                feedbackText.className = 'feedback-text correto';
-                showFeedback();
-            });
-
-            // Resposta errada
-            respostaErrada.addEventListener('click', function () {
-                feedbackText.textContent = 'Errou!';
-                feedbackText.className = 'feedback-text errado';
-                showFeedback();
-            });
-
-            // Botão continuar
-            feedbackBtn.addEventListener('click', function () {
-                hideFeedback();
-            });
-
+    
             function showFeedback() {
                 feedbackOverlay.classList.add('show-feedback');
                 setTimeout(() => {
                     document.querySelector('.feedback-content').classList.add('show-content');
                 }, 10);
             }
-
+    
             function hideFeedback() {
                 document.querySelector('.feedback-content').classList.remove('show-content');
                 setTimeout(() => {
                     feedbackOverlay.classList.remove('show-feedback');
                 }, 300);
             }
+    
+            // Resposta correta
+            respostaCorreta.addEventListener('click', function () {
+                feedbackText.textContent = 'Correto!';
+                feedbackText.className = 'feedback-text correto';
+                showFeedback();
+            });
+    
+            // Resposta errada
+            respostaErrada.addEventListener('click', function () {
+                feedbackText.textContent = 'Errou!';
+                feedbackText.className = 'feedback-text errado';
+                showFeedback();
+            });
+    
+            // Botão continuar - versão corrigida
+            feedbackBtn.addEventListener('click', function () {
+                hideFeedback();
+                setTimeout(() => {
+                    window.location.href = 'nivel1.html';
+                }, 300);
+            });
         });
     </script>
 </body>
