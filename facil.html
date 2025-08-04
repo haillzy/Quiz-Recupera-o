@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nível Fácil</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(to left, rgb(243, 181, 89), rgb(240, 232, 119));
+        color: black;
+        font-family: 'The seasons', sans-serif;
+    }
+
+    /* Cabeçalho */
+
+    header {
+        background: rgb(255, 255, 255);
+        width: fit-content;
+        padding: 20px 50px;
+        font-family: 'Courier New', Courier, monospace;
+        color: #000000;
+        text-align: left;
+        border-radius: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 20px;
+        border: none;
+        box-shadow: none;
+    }
+
+    header h1 {
+        font-size: small;
+        font-weight: normal;
+        margin: 0;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+        padding: 30px 0;
+        position: relative;
+    }
+
+    .retangulo {
+        background: rgb(255, 255, 255);
+        color: black;
+        border: none;
+        box-shadow: none;
+        padding: 30spx;
+        border-radius: 5px;
+        margin-top: 90px;
+    }
+
+    .titulo {
+        color: #000000;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .botoes-resposta {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 20px;
+    }
+
+    .botao-resposta {
+        padding: 15px 30px;
+        background-color: #f0ad26;
+        color: white;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 14px;
+        box-shadow: 0 2px 4px rgba(255, 177, 22, 0.5);
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 45%;
+        text-align: center;
+    }
+
+    .botao-resposta:hover {
+        background-color: rgb(255, 177, 22);
+        transform: scale(1.05);
+    }
+
+    .resposta {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 28px;
+    }
+</style>
+
+<body>
+
+    <body>
+
+        <div class="container">
+            <header>
+                <h1><b>Nivel Fácil</b></h1>
+            </header>
+        </div>
+
+        <div class="container">
+            <section class="retangulo">
+                <h1 class="titulo">1. Um jovem recebeu um arquivo com fotos íntimas de um ex-namorado(a) e repassou para
+                    amigos.<Br> Isso é crime?</h1>
+            </section>
+        </div>
+
+        <!-- Container para os botões -->
+        <div class="container">
+            <button class="botao-resposta">
+                <p class="resposta">Sim, é divulgação de imagens íntimas<br>sem consentimento (Lei nº 13.718/2018).</p>
+            </button>
+            <button class="botao-resposta">
+                <p class="resposta">Não, se ele não foi quem tirou as fotos.</p>
+            </button>
+        </div>
+    </body>
+
+</body>
+
+</html>
