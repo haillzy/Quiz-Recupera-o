@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
 </head>
 
 <style>
-   header {
+    header {
         background: linear-gradient(to right, rgb(243, 181, 89), rgb(240, 232, 119));
         width: 90%;
         padding: 20px 15px;
@@ -31,8 +32,8 @@
         padding: 30px 0;
         align-items: center;
     }
-    
-  .retangulo {
+
+    .retangulo {
         background: linear-gradient(to bottom, rgb(243, 181, 89), rgb(240, 232, 119));
         border-radius: 10px;
         padding: 100px 200px;
@@ -43,10 +44,10 @@
         align-items: center;
     }
 
-     .dificuldade {
+    .dificuldade {
         display: block;
         padding: 40px 180px;
-        background-color:#f0ad26;
+        background-color: #f0ad26;
         color: white;
         font-family: 'Courier New', Courier, monospace;
         font-size: medium;
@@ -58,10 +59,10 @@
         transition: all 0.3 ease;
     }
 
-    .dificuldade:hover{
-        background-color:rgb(255, 177, 22);
+    .dificuldade:hover {
+        background-color: rgb(255, 177, 22);
         transform: scale(1.05);
-        box-shadow: 0 4px 8px  linear-gradient ( rgb(255, 177, 22),rgb(240, 232, 119));
+        box-shadow: 0 4px 8px linear-gradient (rgb(255, 177, 22), rgb(240, 232, 119));
     }
 
     .texto {
@@ -71,12 +72,13 @@
         font-weight: 700;
     }
 
-
-
+    a {
+        text-decoration: none;
+    }
 </style>
 
 <body>
-    
+
     <div class="container">
 
         <header>
@@ -85,14 +87,25 @@
     </div>
 
     <div class="container">
-        <!-- Niveis de dificuldade -->
         <section class="retangulo">
             <h1 class="texto"><b> Dificuldade </b></h1>
-            <button class="dificuldade"> <p> Fácil</p> </button>
-            <button class="dificuldade"><p> Médio </p> </button>
-            <button class="dificuldade"> <p> Difícil </p> </button>
+            <a href="facil.html" class="link-botao">
+                <button class="dificuldade">
+                    <p>Fácil</p>
+                </button>
+            </a>
+            <a href="#" class="link-botao">
+                <button class="dificuldade">
+                    <p>Médio</p>
+                </button>
+            </a>
+            <a href="#" class="link-botao">
+                <button class="dificuldade">
+                    <p>Difícil</p>
+                </button>
+            </a>
         </section>
     </div>
-
 </body>
+
 </html>
