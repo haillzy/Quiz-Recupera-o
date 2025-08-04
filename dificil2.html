@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nível Médio - Pergunta 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to left, rgb(243, 181, 89), rgb(240, 232, 119));
+            color: black;
+            font-family: 'The seasons', sans-serif;
+        }
+
+        header {
+            background: rgb(255, 255, 255);
+            width: fit-content;
+            padding: 20px 50px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #000000;
+            text-align: left;
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 20px;
+            border: none;
+            box-shadow: none;
+        }
+
+        header h1 {
+            font-size: small;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 20px;
+            padding: 30px 0;
+            position: relative;
+        }
+
+        .retangulo {
+            background: rgb(255, 255, 255);
+            color: black;
+            border: none;
+            box-shadow: none;
+            padding: 30px;
+            border-radius: 5px;
+            margin-top: 90px;
+        }
+
+        .titulo {
+            color: #000000;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .botoes-resposta {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .botao-resposta {
+            padding: 15px 30px;
+            background-color: #f0ad26;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(255, 177, 22, 0.5);
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 45%;
+            text-align: center;
+        }
+
+        .botao-resposta:hover {
+            background-color: rgb(255, 177, 22);
+            transform: scale(1.05);
+        }
+
+        .resposta {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 28px;
+        }
+
+        .feedback-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .feedback-text {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .correto {
+            color: #28a745;
+        }
+
+        .errado {
+            color: #dc3545;
+        }
+
+        .feedback-btn {
+            padding: 10px 25px;
+            background-color: #f0ad26;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-btn:hover {
+            background-color: #e09d1a;
+        }
+
+        .show-feedback {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .show-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><b>Nivel Médio</b></h1>
+        </header>
+    </div>
+
+    <div class="container">
+        <section class="retangulo">
+            <h1 class="titulo">3.Usar um VPN para acessar conteúdo bloqueado no seu país (como Netflix de outra região).<br>
+                Isso é crime?</h1>
+        </section>
+    </div>
+
+    <div class="container">
+        <div class="botoes-resposta">
+            <button class="botao-resposta" id="resposta-errada">
+                <p class="resposta">Sim, é crime.</p>
+            </button>
+            <button class="botao-resposta" id="resposta-correta">
+                <p class="resposta">Não é crime.</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="feedback-overlay" id="feedback-overlay">
+        <div class="feedback-content">
+            <div class="feedback-text" id="feedback-text"></div>
+            <button class="feedback-btn" id="feedback-btn">Continuar</button>
+        </div>
+    </div>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const respostaCorreta = document.getElementById('resposta-correta');
+            const respostaErrada = document.getElementById('resposta-errada');
+            const feedbackOverlay = document.getElementById('feedback-overlay');
+            const feedbackText = document.getElementById('feedback-text');
+            const feedbackBtn = document.getElementById('feedback-btn');
+
+            function showFeedback() {
+                feedbackOverlay.classList.add('show-feedback');
+                setTimeout(() => {
+                    document.querySelector('.feedback-content').classList.add('show-content');
+                }, 10);
+            }
+
+            function hideFeedback() {
+                document.querySelector('.feedback-content').classList.remove('show-content');
+                setTimeout(() => {
+                    feedbackOverlay.classList.remove('show-feedback');
+                }, 300);
+            }
+
+            // Na resposta correta
+            respostaCorreta.addEventListener('click', function () {
+                updateScore(true);
+                feedbackText.textContent = 'Correto!';
+                feedbackText.className = 'feedback-text correto';
+                showFeedback();
+            });
+
+            // Na resposta errada
+            respostaErrada.addEventListener('click', function () {
+                updateScore(false);
+                feedbackText.textContent = 'Errou!';
+                feedbackText.className = 'feedback-text errado';
+                showFeedback();
+            });
+
+            // botão de continuar
+            feedbackBtn.addEventListener('click', function () {
+                hideFeedback();
+                setTimeout(() => {
+                    window.location.href = 'dificil3.html';
+                }, 300);
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // ... (código existente)
+
+            // Modificar os listeners dos botões de resposta
+            respostaCorreta.addEventListener('click', function () {
+                updateScore(true);  // Adicionar esta linha
+                feedbackText.textContent = 'Correto!';
+                feedbackText.className = 'feedback-text correto';
+                showFeedback();
+            });
+
+            respostaErrada.addEventListener('click', function () {
+                updateScore(false); // Adicionar esta linha (opcional)
+                feedbackText.textContent = 'Errou!';
+                feedbackText.className = 'feedback-text errado';
+                showFeedback();
+            });
+
+            // ... (restante do código)
+        });
+
+        // Adicionar este script no final do body
+        if (!localStorage.getItem('quizScore')) {
+            localStorage.setItem('quizScore', '0/5');
+        }
+
+        function updateScore(isCorrect) {
+            const currentScore = localStorage.getItem('quizScore').split('/');
+            let acertos = parseInt(currentScore[0]);
+            const total = parseInt(currentScore[1]);
+
+            if (isCorrect) {
+                acertos = Math.min(acertos + 1, total);
+            }
+
+            localStorage.setItem('quizScore', `${acertos}/${total}`);
+        }
+
+        function resetScore() {
+            localStorage.setItem('quizScore', '0/5');
+        }
+    </script>
+</body>
+
+</html>
