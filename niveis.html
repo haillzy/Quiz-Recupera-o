@@ -94,18 +94,57 @@
                     <p>Fácil</p>
                 </button>
             </a>
-            <a href="#" class="link-botao">
+            <a href="medio.html" class="link-botao">
                 <button class="dificuldade">
                     <p>Médio</p>
                 </button>
             </a>
-            <a href="#" class="link-botao">
+            <a href="dificil.html" class="link-botao">
                 <button class="dificuldade">
                     <p>Difícil</p>
                 </button>
             </a>
         </section>
     </div>
+    <script>
+        // Inicializa a pontuação
+        if (!localStorage.getItem('quizScore')) {
+            localStorage.setItem('quizScore', '0/5');
+        }
+
+        // Função para atualizar a pontuação
+        function updateScore(isCorrect) {
+            const currentScore = localStorage.getItem('quizScore').split('/');
+            let acertos = parseInt(currentScore[0]);
+            const total = parseInt(currentScore[1]);
+
+            if (isCorrect) {
+                acertos = Math.min(acertos + 1, total);
+            }
+
+            localStorage.setItem('quizScore', `${acertos}/${total}`);
+        }
+
+        // Função para refazer a pontuação
+        function resetScore() {
+            localStorage.setItem('quizScore', '0/5');
+        }
+
+        // Adicionar este script no final do body
+        if (!localStorage.getItem('quizScore')) {
+            localStorage.setItem('quizScore', '0/5');
+        }
+
+        function resetScore() {
+            localStorage.setItem('quizScore', '0/5');
+        }
+
+        // Adicionar evento de clique para resetar a pontuação
+        document.querySelectorAll('.dificuldade').forEach(botao => {
+            botao.addEventListener('click', resetScore);
+        });
+
+    </script>
 </body>
 
 </html>
