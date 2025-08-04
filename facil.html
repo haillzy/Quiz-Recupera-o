@@ -187,10 +187,10 @@
     <div class="container">
         <div class="botoes-resposta">
             <button class="botao-resposta" id="resposta-correta">
-                <p class="resposta">Sim, é divulgação de imagens íntimas<br>sem consentimento (Lei nº 13.718/2018).</p>
+                <p class="resposta">Sim, é crime.</p>
             </button>
             <button class="botao-resposta" id="resposta-errada">
-                <p class="resposta">Não, se ele não foi quem tirou as fotos.</p>
+                <p class="resposta">Não é crime.</p>
             </button>
         </div>
     </div>
@@ -210,43 +210,89 @@
             const feedbackOverlay = document.getElementById('feedback-overlay');
             const feedbackText = document.getElementById('feedback-text');
             const feedbackBtn = document.getElementById('feedback-btn');
-    
+
             function showFeedback() {
                 feedbackOverlay.classList.add('show-feedback');
                 setTimeout(() => {
                     document.querySelector('.feedback-content').classList.add('show-content');
                 }, 10);
             }
-    
+
             function hideFeedback() {
                 document.querySelector('.feedback-content').classList.remove('show-content');
                 setTimeout(() => {
                     feedbackOverlay.classList.remove('show-feedback');
                 }, 300);
             }
-    
-            // Resposta correta
+
+            // Na resposta correta
             respostaCorreta.addEventListener('click', function () {
+                updateScore(true);
                 feedbackText.textContent = 'Correto!';
                 feedbackText.className = 'feedback-text correto';
                 showFeedback();
             });
-    
-            // Resposta errada
+
+            // Na resposta errada
             respostaErrada.addEventListener('click', function () {
+                updateScore(false);
                 feedbackText.textContent = 'Errou!';
                 feedbackText.className = 'feedback-text errado';
                 showFeedback();
             });
-    
-            // Botão continuar - versão corrigida
+
+            // botão de continuar
             feedbackBtn.addEventListener('click', function () {
                 hideFeedback();
                 setTimeout(() => {
-                    window.location.href = 'nivel1.html';
+                    window.location.href = 'facil1.html';
                 }, 300);
             });
         });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // ... (código existente)
+
+            // Modificar os listeners dos botões de resposta
+            respostaCorreta.addEventListener('click', function () {
+                updateScore(true);  // Adicionar esta linha
+                feedbackText.textContent = 'Correto!';
+                feedbackText.className = 'feedback-text correto';
+                showFeedback();
+            });
+
+            respostaErrada.addEventListener('click', function () {
+                updateScore(false); // Adicionar esta linha (opcional)
+                feedbackText.textContent = 'Errou!';
+                feedbackText.className = 'feedback-text errado';
+                showFeedback();
+            });
+
+            // ... (restante do código)
+        });
+
+        // Adicionar este script no final do body
+        if (!localStorage.getItem('quizScore')) {
+            localStorage.setItem('quizScore', '0/5');
+        }
+
+        function updateScore(isCorrect) {
+            const currentScore = localStorage.getItem('quizScore').split('/');
+            let acertos = parseInt(currentScore[0]);
+            const total = parseInt(currentScore[1]);
+
+            if (isCorrect) {
+                acertos = Math.min(acertos + 1, total);
+            }
+
+            localStorage.setItem('quizScore', `${acertos}/${total}`);
+        }
+
+        function resetScore() {
+            localStorage.setItem('quizScore', '0/5');
+        }
     </script>
 </body>
 
