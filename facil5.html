@@ -56,16 +56,17 @@
             color: black;
             border: none;
             box-shadow: none;
-            padding: 30px;
+            padding: 150px 100px;
             border-radius: 5px;
             margin-top: 90px;
         }
 
         .titulo {
+            display: flex;
             color: #000000;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             text-align: center;
-            margin-top: 20px;
+            margin-bottom: 50px;
         }
 
         .botoes-resposta {
@@ -172,29 +173,28 @@
 <body>
     <div class="container">
         <header>
-            <h1><b>Nivel Fácil</b></h1>
+            <a href="inicial.html">
+                <h1><b>Nivel Fácil</b></h1>
         </header>
+        </a>
     </div>
 
     <div class="container">
         <section class="retangulo">
             <h1 class="titulo">1.Usar adblock em sites<Br> Isso é crime?</h1>
+
+
+            <div class="botoes-resposta">
+                <button class="botao-resposta" id="resposta-correta">
+                    <p class="resposta">Não é crime.</p>
+                </button>
+                <button class="botao-resposta" id="resposta-errada">
+                    <p class="resposta">Sim, é crime</p>
+                </button>
+            </div>
         </section>
     </div>
 
-    <!-- Container para os botões -->
-    <div class="container">
-        <div class="botoes-resposta">
-            <button class="botao-resposta" id="resposta-correta">
-                <p class="resposta">Não é crime.</p>
-            </button>
-            <button class="botao-resposta" id="resposta-errada">
-                <p class="resposta">Sim, é crime</p>
-            </button>
-        </div>
-    </div>
-
-    <!-- Feedback overlay (mantido igual) -->
     <div class="feedback-overlay" id="feedback-overlay">
         <div class="feedback-content">
             <div class="feedback-text" id="feedback-text"></div>
@@ -204,9 +204,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Elementos corrigidos (IDs consistentes)
             const respostaCorreta = document.getElementById('resposta-correta');
-            const respostaErrada = document.getElementById('resposta-errada'); // ID corrigido
+            const respostaErrada = document.getElementById('resposta-errada');
             const feedbackOverlay = document.getElementById('feedback-overlay');
             const feedbackText = document.getElementById('feedback-text');
             const feedbackBtn = document.getElementById('feedback-btn');
@@ -226,31 +225,26 @@
                 }, 300);
             }
 
-            // Resposta correta
             respostaCorreta.addEventListener('click', function () {
-                updateScore(true); // Atualiza pontuação
+                updateScore(true);
                 feedbackText.textContent = 'Correto!';
                 feedbackText.className = 'feedback-text correto';
                 showFeedback();
             });
 
-            // Resposta errada
             respostaErrada.addEventListener('click', function () {
-                updateScore(false); // Não aumenta pontuação
+                updateScore(false);
                 feedbackText.textContent = 'Errou!';
                 feedbackText.className = 'feedback-text errado';
                 showFeedback();
             });
 
-            // Botão continuar
+
             feedbackBtn.addEventListener('click', function () {
-                hideFeedback(); // Agora redireciona para resultados.html
+                hideFeedback();
             });
         });
-    </script>
 
-    <script>
-        // Sistema de pontuação (mantido funcional)
         if (!localStorage.getItem('quizScore')) {
             localStorage.setItem('quizScore', '0/5');
         }
