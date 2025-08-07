@@ -8,18 +8,27 @@
 </head>
 
 <style>
-    header {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    body {
         background: linear-gradient(to right, rgb(243, 181, 89), rgb(240, 232, 119));
-        width: 90%;
-        padding: 20px 15px;
+    }
+
+    /* Cabeçalho */
+
+    header {
         font-family: 'Courier New', Courier, monospace;
         color: white;
         text-align: center;
-        border-radius: 15px;
     }
 
     header h1 {
-        font-size: 2.8rem;
+        font-size: 4.4rem;
         font-weight: normal;
     }
 
@@ -34,14 +43,16 @@
     }
 
     .retangulo {
-        background: linear-gradient(to bottom, rgb(243, 181, 89), rgb(240, 232, 119));
-        border-radius: 10px;
-        padding: 100px 200px;
+        background: white;
+        border-radius: 5px;
+        padding: 40px 200px;
         margin-bottom: 30px;
-        margin-left: 30px;
-        box-shadow: 0 4px 15px #d8aa4d;
-        color: #f6f6f6;
+        box-shadow: 0 4px 15px #868076;
+        color: #000000;
+        display: flex;
+        flex-direction: column;
         align-items: center;
+        gap: 20px;
     }
 
     .dificuldade {
@@ -51,24 +62,25 @@
         color: white;
         font-family: 'Courier New', Courier, monospace;
         font-size: medium;
-        box-shadow: rgb(255, 177, 22);
+        box-shadow: 0 4px 8px rgba(255, 177, 22, 0.3);
         border-radius: 5px;
         border: none;
         cursor: pointer;
-        margin-top: 60px;
-        transition: all 0.3 ease;
+        transition: all 0.3s ease;
+        width: 100%;
+        text-align: center;
     }
 
     .dificuldade:hover {
         background-color: rgb(255, 177, 22);
         transform: scale(1.05);
-        box-shadow: 0 4px 8px linear-gradient (rgb(255, 177, 22), rgb(240, 232, 119));
+        box-shadow: 0 4px 8px rgba(255, 177, 22, 0.5);
     }
 
     .texto {
         font-family: 'Courier New', Courier, monospace;
         text-align: center;
-        margin-top: -60px;
+        margin-top: -20px;
         font-weight: 700;
     }
 
@@ -89,30 +101,34 @@
     <div class="container">
         <section class="retangulo">
             <h1 class="texto"><b> Dificuldade </b></h1>
-            <a href="facil.html" class="link-botao">
+
+            <a href="facil.html">
                 <button class="dificuldade">
                     <p>Fácil</p>
                 </button>
             </a>
-            <a href="medio.html" class="link-botao">
+
+            <a href="medio.html">
                 <button class="dificuldade">
                     <p>Médio</p>
                 </button>
             </a>
-            <a href="dificil.html" class="link-botao">
+
+            <a href="dificil.html">
                 <button class="dificuldade">
                     <p>Difícil</p>
                 </button>
             </a>
+
         </section>
     </div>
+
     <script>
-        // Inicializa a pontuação
+
         if (!localStorage.getItem('quizScore')) {
             localStorage.setItem('quizScore', '0/5');
         }
 
-        // Função para atualizar a pontuação
         function updateScore(isCorrect) {
             const currentScore = localStorage.getItem('quizScore').split('/');
             let acertos = parseInt(currentScore[0]);
@@ -125,12 +141,10 @@
             localStorage.setItem('quizScore', `${acertos}/${total}`);
         }
 
-        // Função para refazer a pontuação
         function resetScore() {
             localStorage.setItem('quizScore', '0/5');
         }
 
-        // Adicionar este script no final do body
         if (!localStorage.getItem('quizScore')) {
             localStorage.setItem('quizScore', '0/5');
         }
@@ -139,7 +153,6 @@
             localStorage.setItem('quizScore', '0/5');
         }
 
-        // Adicionar evento de clique para resetar a pontuação
         document.querySelectorAll('.dificuldade').forEach(botao => {
             botao.addEventListener('click', resetScore);
         });
