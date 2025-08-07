@@ -56,16 +56,17 @@
             color: black;
             border: none;
             box-shadow: none;
-            padding: 30px;
+            padding: 150px 100px;
             border-radius: 5px;
             margin-top: 90px;
         }
 
         .titulo {
+            display: flex;
             color: #000000;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             text-align: center;
-            margin-top: 20px;
+            margin-bottom: 50px;
         }
 
         .botoes-resposta {
@@ -102,7 +103,6 @@
             font-size: 28px;
         }
 
-        /* Feedback overlay */
         .feedback-overlay {
             position: fixed;
             top: 0;
@@ -166,34 +166,36 @@
         .show-content {
             transform: scale(1);
         }
+
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1><b>Nivel Fácil</b></h1>
+            <a href="inicial.html">
+                <h1><b>Nivel Fácil</b></h1>
         </header>
+        </a>
     </div>
 
     <div class="container">
         <section class="retangulo">
             <h1 class="titulo">1.Filmar um show com o celular e postar no YouTube<Br> Isso é crime?</h1>
+
+            <div class="botoes-resposta">
+                <button class="botao-resposta" id="resposta-errada">
+                    <p class="resposta">Não é crime. </p>
+                    <button class="botao-resposta" id="resposta-correta">
+                        <p class="resposta">Sim, é crime</p>
+                    </button>
+            </div>
         </section>
     </div>
 
-    <!-- Container para os botões -->
-    <div class="container">
-        <div class="botoes-resposta">
-            <button class="botao-resposta" id="resposta-errada">
-                <p class="resposta">Não é crime. </p>
-                <button class="botao-resposta" id="resposta-correta">
-                    <p class="resposta">Sim, é crime</p>
-                </button>
-        </div>
-    </div>
-
-    <!-- Feedback overlay -->
     <div class="feedback-overlay" id="feedback-overlay">
         <div class="feedback-content">
             <div class="feedback-text" id="feedback-text"></div>
@@ -223,7 +225,6 @@
                 }, 300);
             }
 
-            // Na resposta correta
             respostaCorreta.addEventListener('click', function () {
                 updateScore(true);
                 feedbackText.textContent = 'Correto!';
@@ -231,14 +232,13 @@
                 showFeedback();
             });
 
-            // Na resposta errada
             respostaErrada.addEventListener('click', function () {
                 updateScore(false);
                 feedbackText.textContent = 'Errou!';
                 feedbackText.className = 'feedback-text errado';
                 showFeedback();
             });
-            // botão de continuar
+
             feedbackBtn.addEventListener('click', function () {
                 hideFeedback();
                 setTimeout(() => {
@@ -246,14 +246,11 @@
                 }, 300);
             });
         });
-    </script>
-    <script>
-        // Inicializa a pontuação
+
         if (!localStorage.getItem('quizScore')) {
             localStorage.setItem('quizScore', '0/5');
         }
 
-        // Função para atualizar a pontuação
         function updateScore(isCorrect) {
             const currentScore = localStorage.getItem('quizScore').split('/');
             let acertos = parseInt(currentScore[0]);
@@ -266,7 +263,6 @@
             localStorage.setItem('quizScore', `${acertos}/${total}`);
         }
 
-        // Função para refazer a pontuação
         function resetScore() {
             localStorage.setItem('quizScore', '0/5');
         }
