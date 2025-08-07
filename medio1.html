@@ -55,16 +55,17 @@
             color: black;
             border: none;
             box-shadow: none;
-            padding: 30px;
+            padding: 150px 100px;
             border-radius: 5px;
             margin-top: 90px;
         }
 
         .titulo {
+            display: flex;
             color: #000000;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             text-align: center;
-            margin-top: 20px;
+            margin-bottom: 50px;
         }
 
         .botoes-resposta {
@@ -164,14 +165,20 @@
         .show-content {
             transform: scale(1);
         }
+
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1><b>Nivel Médio</b></h1>
+            <a href="inicial.html">
+                <h1><b>Nivel Médio</b></h1>
         </header>
+        </a>
     </div>
 
     <div class="container">
@@ -202,7 +209,7 @@
         </div>
     </div>
 
-<script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const respostaCorreta = document.getElementById('resposta-correta');
             const respostaErrada = document.getElementById('resposta-errada');
