@@ -56,16 +56,17 @@
             color: black;
             border: none;
             box-shadow: none;
-            padding: 30px;
+            padding: 150px 100px;
             border-radius: 5px;
             margin-top: 90px;
         }
 
         .titulo {
+            display: flex;
             color: #000000;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             text-align: center;
-            margin-top: 20px;
+            margin-bottom: 50px;
         }
 
         .botoes-resposta {
@@ -102,7 +103,6 @@
             font-size: 28px;
         }
 
-        /* Feedback overlay */
         .feedback-overlay {
             position: fixed;
             top: 0;
@@ -166,45 +166,49 @@
         .show-content {
             transform: scale(1);
         }
+
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1><b>Nivel Médio</b></h1>
+            <a href="inicial.html">
+                <h1><b>Nivel Médio</b></h1>
         </header>
+        </a>
     </div>
 
     <div class="container">
         <section class="retangulo">
             <h1 class="titulo">4. Modificar um jogo offline (como "hackear" saves ou usar trainers) para vantagem
                 pessoal, sem distribuir.<br> Isso é crime?</h1>
+
+            <div class="botoes-resposta">
+                <button class="botao-resposta" id="resposta-errada">
+                    <p class="resposta">Sim, é crime.</p>
+                </button>
+                <button class="botao-resposta" id="resposta-errada">
+                    <p class="resposta">Não é crime.</p>
+                </button>
+                <button class="botao-resposta" id="resposta-correta">
+                    <p class="resposta">Não é crime se for para uso pessoal.</p>
+                </button>
+            </div>
         </section>
     </div>
 
-    <div class="container">
-        <div class="botoes-resposta">
-            <button class="botao-resposta" id="resposta-errada">
-                <p class="resposta">Sim, é crime.</p>
-            </button>
-            <button class="botao-resposta" id="resposta-errada">
-                <p class="resposta">Não é crime.</p>
-            </button>
-            <button class="botao-resposta" id="resposta-correta">
-                <p class="resposta">Não é crime se for para uso pessoal.</p>
-            </button>
+    <div class="feedback-overlay" id="feedback-overlay">
+        <div class="feedback-content">
+            <div class="feedback-text" id="feedback-text"></div>
+            <button class="feedback-btn" id="feedback-btn">Continuar</button>
         </div>
     </div>
 
-        <div class="feedback-overlay" id="feedback-overlay">
-            <div class="feedback-content">
-                <div class="feedback-text" id="feedback-text"></div>
-                <button class="feedback-btn" id="feedback-btn">Continuar</button>
-            </div>
-        </div>
-
- <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const respostaCorreta = document.getElementById('resposta-correta');
             const respostaErrada = document.getElementById('resposta-errada');
@@ -226,7 +230,6 @@
                 }, 300);
             }
 
-            // Na resposta correta
             respostaCorreta.addEventListener('click', function () {
                 updateScore(true);
                 feedbackText.textContent = 'Correto!';
@@ -234,7 +237,6 @@
                 showFeedback();
             });
 
-            // Na resposta errada
             respostaErrada.addEventListener('click', function () {
                 updateScore(false);
                 feedbackText.textContent = 'Errou!';
@@ -242,7 +244,6 @@
                 showFeedback();
             });
 
-            // botão de continuar
             feedbackBtn.addEventListener('click', function () {
                 hideFeedback();
                 setTimeout(() => {
@@ -250,31 +251,25 @@
                 }, 300);
             });
         });
-    </script>
 
-    <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // ... (código existente)
 
-            // Modificar os listeners dos botões de resposta
             respostaCorreta.addEventListener('click', function () {
-                updateScore(true);  // Adicionar esta linha
+                updateScore(true);
                 feedbackText.textContent = 'Correto!';
                 feedbackText.className = 'feedback-text correto';
                 showFeedback();
             });
 
             respostaErrada.addEventListener('click', function () {
-                updateScore(false); // Adicionar esta linha (opcional)
+                updateScore(false);
                 feedbackText.textContent = 'Errou!';
                 feedbackText.className = 'feedback-text errado';
                 showFeedback();
             });
 
-            // ... (restante do código)
         });
 
-        // Adicionar este script no final do body
         if (!localStorage.getItem('quizScore')) {
             localStorage.setItem('quizScore', '0/5');
         }
