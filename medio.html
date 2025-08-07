@@ -55,16 +55,17 @@
             color: black;
             border: none;
             box-shadow: none;
-            padding: 30px;
+            padding: 150px 100px;
             border-radius: 5px;
             margin-top: 90px;
         }
 
         .titulo {
+            display: flex;
             color: #000000;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             text-align: center;
-            margin-top: 20px;
+            margin-bottom: 50px;
         }
 
         .botoes-resposta {
@@ -164,14 +165,20 @@
         .show-content {
             transform: scale(1);
         }
+
+        a{
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1><b>Nivel Médio</b></h1>
+            <a href="inicial.html">
+                <h1><b>Nivel Médio</b></h1>
         </header>
+        </a>
     </div>
 
     <div class="container">
@@ -199,7 +206,7 @@
         </div>
     </div>
 
-<script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const respostaCorreta = document.getElementById('resposta-correta');
             const respostaErrada = document.getElementById('resposta-errada');
@@ -221,7 +228,6 @@
                 }, 300);
             }
 
-            // Na resposta correta
             respostaCorreta.addEventListener('click', function () {
                 updateScore(true);
                 feedbackText.textContent = 'Correto!';
@@ -229,7 +235,6 @@
                 showFeedback();
             });
 
-            // Na resposta errada
             respostaErrada.addEventListener('click', function () {
                 updateScore(false);
                 feedbackText.textContent = 'Errou!';
@@ -237,7 +242,6 @@
                 showFeedback();
             });
 
-            // botão de continuar
             feedbackBtn.addEventListener('click', function () {
                 hideFeedback();
                 setTimeout(() => {
@@ -245,31 +249,25 @@
                 }, 300);
             });
         });
-    </script>
 
-    <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // ... (código existente)
 
-            // Modificar os listeners dos botões de resposta
             respostaCorreta.addEventListener('click', function () {
-                updateScore(true);  // Adicionar esta linha
+                updateScore(true);
                 feedbackText.textContent = 'Correto!';
                 feedbackText.className = 'feedback-text correto';
                 showFeedback();
             });
 
             respostaErrada.addEventListener('click', function () {
-                updateScore(false); // Adicionar esta linha (opcional)
+                updateScore(false);
                 feedbackText.textContent = 'Errou!';
                 feedbackText.className = 'feedback-text errado';
                 showFeedback();
             });
 
-            // ... (restante do código)
         });
 
-        // Adicionar este script no final do body
         if (!localStorage.getItem('quizScore')) {
             localStorage.setItem('quizScore', '0/5');
         }
