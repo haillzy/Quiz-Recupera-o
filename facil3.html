@@ -216,7 +216,6 @@
             const feedbackText = document.getElementById('feedback-text');
             const feedbackBtn = document.getElementById('feedback-btn');
 
-            // Na resposta correta
             respostaCorreta.addEventListener('click', function () {
                 updateScore(true);
                 feedbackText.textContent = 'Correto!';
@@ -224,7 +223,6 @@
                 showFeedback();
             });
 
-            // Na resposta errada
             respostaErrada.addEventListener('click', function () {
                 updateScore(false);
                 feedbackText.textContent = 'Errou!';
@@ -232,7 +230,6 @@
                 showFeedback();
             });
 
-            // Botão continuar
             feedbackBtn.addEventListener('click', function () {
                 hideFeedback();
             });
