@@ -51,22 +51,25 @@
             position: relative;
         }
 
+
         .retangulo {
             background: rgb(255, 255, 255);
             color: black;
             border: none;
             box-shadow: none;
-            padding: 30px;
+            padding: 150px 100px;
             border-radius: 5px;
             margin-top: 90px;
         }
 
         .titulo {
+            display: flex;
             color: #000000;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             text-align: center;
-            margin-top: 20px;
+            margin-bottom: 50px;
         }
+
 
         .botoes-resposta {
             display: flex;
@@ -102,7 +105,6 @@
             font-size: 28px;
         }
 
-        /* area dos Feedback */
         .feedback-overlay {
             position: fixed;
             top: 0;
@@ -172,7 +174,9 @@
 <body>
     <div class="container">
         <header>
-            <h1><b>Nivel Fácil</b></h1>
+            <a href="inicial.html">
+                <h1><b>Nivel Fácil</b></h1>
+            </a>
         </header>
     </div>
 
@@ -183,7 +187,6 @@
         </section>
     </div>
 
-    <!-- Container para os botões -->
     <div class="container">
         <div class="botoes-resposta">
             <button class="botao-resposta" id="resposta-correta">
@@ -195,7 +198,6 @@
         </div>
     </div>
 
-    <!-- Feedback overlay -->
     <div class="feedback-overlay" id="feedback-overlay">
         <div class="feedback-content">
             <div class="feedback-text" id="feedback-text"></div>
@@ -212,20 +214,19 @@
             const feedbackBtn = document.getElementById('feedback-btn');
 
             respostaCorreta.addEventListener('click', function () {
-                updateScore(true);  // Adicionar esta linha
+                updateScore(true);
                 feedbackText.textContent = 'Correto!';
                 feedbackText.className = 'feedback-text correto';
                 showFeedback();
             });
 
             respostaErrada.addEventListener('click', function () {
-                updateScore(false); // Adicionar esta linha
+                updateScore(false);
                 feedbackText.textContent = 'Errou!';
                 feedbackText.className = 'feedback-text errado';
                 showFeedback();
             });
 
-            // Botão continuar
             feedbackBtn.addEventListener('click', function () {
                 hideFeedback();
             });
@@ -264,15 +265,12 @@
         function resetScore() {
             localStorage.setItem('quizScore', '0/5');
         }
-    </script>
 
-    <script>
-        // Inicializa a pontuação
         if (!localStorage.getItem('quizScore')) {
             localStorage.setItem('quizScore', '0/5');
         }
 
-        // Função para atualizar a pontuação
+
         function updateScore(isCorrect) {
             const currentScore = localStorage.getItem('quizScore').split('/');
             let acertos = parseInt(currentScore[0]);
@@ -285,7 +283,7 @@
             localStorage.setItem('quizScore', `${acertos}/${total}`);
         }
 
-        // Função para refazer a pontuação
+
         function resetScore() {
             localStorage.setItem('quizScore', '0/5');
         }
