@@ -8,7 +8,8 @@
 </head>
 
 <style>
-    * {
+    body,
+    html {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -25,10 +26,11 @@
         font-family: 'Courier New', Courier, monospace;
         color: white;
         text-align: center;
+        border-radius: 15px;
     }
 
     header h1 {
-        font-size: 4.4rem;
+        font-size: 3rem;
         font-weight: normal;
     }
 
@@ -52,14 +54,12 @@
         align-items: center;
     }
 
-
-
     .comecar {
         display: flex;
         padding: 40px 180px;
         background-color: #f0ad26;
         color: white;
-        font-family: 'Courier New', Courier, monospace;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         font-size: medium;
         box-shadow: rgb(255, 177, 22);
         border-radius: 5px;
@@ -76,7 +76,7 @@
     }
 
     .titulo {
-        font-family: 'Courier New', Courier, monospace;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-align: center;
         margin-top: -60px;
     }
@@ -96,14 +96,14 @@
     </div>
 
     <div class="container">
-            <section class="retangulo">
-                <h2 class="titulo"><b> O quanto você sabe sobre cybercrimes? </b>
-                    <p>Vamos descobrir?</p>
-                </h2>
-                <a href="niveis.html" class="link-botao">
-                    <button class="comecar">Começar Quiz</button>
-                </a>
-            </section>
+        <section class="retangulo">
+            <h2 class="titulo"><b> O quanto você sabe sobre cybercrimes? </b>
+                <p>Vamos descobrir?</p>
+            </h2>
+            <a href="niveis.html">
+                <button class="comecar">Começar Quiz</button>
+            </a>
+        </section>
     </div>
 
     <script>
@@ -111,7 +111,7 @@
         if (!localStorage.getItem('quizScore')) {
             localStorage.setItem('quizScore', '0/5');
         }
- 
+
         function updateScore(isCorrect) {
             const currentScore = localStorage.getItem('quizScore').split('/');
             let acertos = parseInt(currentScore[0]);
@@ -128,7 +128,6 @@
             localStorage.setItem('quizScore', '0/5');
         }
     </script>
-
 
 </body>
 
